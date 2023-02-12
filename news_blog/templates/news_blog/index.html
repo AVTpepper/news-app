@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
-</head>
-<body>
-    <h1>News Home Page</h1>
+{% extends 'news_blog/base.html' %}
+
+
+{% block content %}
+    <h1>News Home</h1>
+    <hr>
     <p>This is a place to share and read stories from other people around the world!</p>
-</body>
-</html>
+    {% for posts in posts %}
+        <h3>{{ posts.title }}</h3>
+        <p>By: {{ posts.author }} on {{ posts.date_posted}}</p>
+        <p>{{ posts.content }}</p>
+    {% endfor %}
+{% endblock content %}
