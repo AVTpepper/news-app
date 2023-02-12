@@ -4,24 +4,24 @@ from django.shortcuts import render, HttpResponse
 
 
 def index(request):
-    return render(request, 'news_blog/news_blog.html')
+    return render(request, 'news_blog/index.html')
 
 
 def login(request):
-    return HttpResponse("<h1> Its working Login</h1>")
+    return render(request, 'news_blog/login.html')
 
 
 def sign_up(request):
-    return HttpResponse("<h1> Its working Sign up!</h1>")
+    return render(request, 'news_blog/sign_up.html')
 
 
 def article_view(request):
-    return HttpResponse("<h1> Its working view the article</h1>")
+    return render(request, 'news_blog/article_view.html')
 
 
 def post_creation(request):
-    return HttpResponse("<h1> Its working create a post!</h1>")
+    return render(request, 'news_blog/post_creation.html')
 
 
 def view_all(request):
-    return HttpResponse("<h1> Its working view all the posts!</h1>")
+    return render(request, 'news_blog/view_all.html')
