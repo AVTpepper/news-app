@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from news_blog.views import index, login, sign_up, article_view, post_creation, view_all, profile
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
