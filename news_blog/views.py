@@ -1,5 +1,7 @@
-from django.shortcuts import render, HttpResponse
-from .models import Post
+from django.shortcuts import render, redirect
+from .models import Post, UserSignUpForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -16,7 +18,20 @@ def login(request):
 
 
 def sign_up(request):
-    return render(request, 'news_blog/sign_up.html', {'title': "Signup Page"})
+    if request.method == "POST":
+        form = UserSignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(
+                request, f'Account Successfully Created for {username} Login Now!')
+            return redirect('login')
+    else:
+        form = UserSignUpForm()
+    return render(request, 'news_blog/sign_up.html', {
+        'form': form,
+        'title': "Signup Page"
+        })
 
 
 def article_view(request):

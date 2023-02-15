@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
 
 # Create your models here.
 
@@ -13,3 +15,11 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class UserSignUpForm(UserCreationForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
