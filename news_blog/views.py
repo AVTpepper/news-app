@@ -1,27 +1,12 @@
 from django.shortcuts import render, HttpResponse
+from .models import Post
 
 # Create your views here.
 
 
-posts = [
-    {
-        'author': 'Alex T',
-        'title': 'News Post 1',
-        'content': 'This is my first news post',
-        'date_posted': '11th September, 2023'
-    },
-    {
-        'author': 'Evelina E',
-        'title': 'News Post 2',
-        'content': 'This is my second news post',
-        'date_posted': '3rd November, 2023'
-    },
-]
-
-
 def index(request):
     context = {
-        'posts': posts
+        'posts': Post.objects.all()
     }
     return render(request, 'news_blog/index.html', context)
 
