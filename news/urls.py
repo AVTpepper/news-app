@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from news_blog.views import index, login, sign_up, article_view, post_creation, view_all
+from news_blog.views import index, login, sign_up, article_view, post_creation, view_all, profile
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -26,6 +26,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(
         template_name='news_blog/logout.html'), name='logout'),
     path('sign-up/', sign_up, name='sign_up'),
+    path('profile/', profile, name='profile'),
     path('article-view/', article_view, name='article_view'),
     path('post-creation/', post_creation, name='post_creation'),
     path('view-all-posts/', view_all, name='view_all'),

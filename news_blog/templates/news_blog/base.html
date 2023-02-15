@@ -25,22 +25,28 @@
       </a>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'post_creation' %}">Create a Post</a>
-          </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'post_creation' %}">Create a Post</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'view_all' %}">View all Posts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+          {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'login' %}">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'sign_up' %}">Signup</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'view_all' %}">View all Posts</a>
-          </li>
         </ul>
+          {% endif %}
       </div>
     </nav>
   </header>

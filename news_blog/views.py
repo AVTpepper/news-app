@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Post, UserSignUpForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -46,3 +47,8 @@ def post_creation(request):
 
 def view_all(request):
     return render(request, 'news_blog/view_all.html', {'title': "All Posts"})
+
+
+@login_required
+def profile(request):
+    return render(request, 'news_blog/profile.html')

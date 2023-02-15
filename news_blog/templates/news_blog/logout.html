@@ -1,0 +1,18 @@
+{% extends 'news_blog/base.html' %}
+
+{% block content %}
+    <h1>Logout Page</h1>
+    <p>You have come here because you clicked logout!</p>
+    <div class="content-section">
+        <form action="" method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Did you mean to log out?</legend>
+                <h4>You just logged out</h4>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit"><a href="{% url 'login' %}">Login Again!</a></button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
