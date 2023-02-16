@@ -11,7 +11,7 @@
     </div>
     <p>This is a place to share and read stories from other people around the world!</p>
     {% for posts in posts %}
-        <h3>{{ posts.title }}</h3>
+        <h3><a href="{% url 'article_view' posts.id %}">{{ posts.title }}</a></h3>
         <p>By: {{ posts.author }} on {{ posts.date_posted}}</p>
         <p>{{ posts.content }}</p>
     {% endfor %}

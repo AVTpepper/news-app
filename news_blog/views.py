@@ -3,15 +3,30 @@ from .models import Post, UserSignUpForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, DetailView, CreateView
+
 
 # Create your views here.
+class PostListView(ListView):
+    model = Post
+    context_object_name = 'posts'
+    ordering = ["-date_posted"]
+    # template_name = 'news_blog/index.html'
 
 
-def index(request):
-    context = {
-        'posts': Post.objects.all()
-    }
-    return render(request, 'news_blog/index.html', context)
+class PostDetailView(DetailView):
+    model = Post
+
+# def index(request):
+#     context = {
+#         'posts': Post.objects.all()
+#     }
+#     return render(request, 'news_blog/index.html', context)
+
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['title', 'content']
 
 
 def login(request):
@@ -40,17 +55,21 @@ def article_view(request):
         request, 'news_blog/article_view.html', {'title': "Article View"})
 
 
-def post_creation(request):
-    return render(
-        request, 'news_blog/post_creation.html', {'title': "Post Creation"})
+# def post_creation(request):
+#     return render(
+#         request, 'news_blog/post_creation.html', {'title': "Post Creation"})
 
 
-def view_all(request):
-    return render(request, 'news_blog/view_all.html', {'title': "All Posts"})
+# def view_all(request):
+#     return render(request, 'news_blog/view_all.html', {'title': "All Posts"})
 
 
 @login_required
 def profile(request):
+    return render(request, 'news_blog/profile.html')
+
+
+def profile_update(request):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(
@@ -67,10 +86,8 @@ def profile(request):
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
-# u_form = UserUpdateForm()
-# p_form = ProfileUpdateForm()
     context = {
         "u_form": u_form,
         "p_form": p_form
     }
-    return render(request, 'news_blog/profile.html', context)
+    return render(request, 'news_blog/profile_update.html', context)

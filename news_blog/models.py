@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+from PIL import Image
 from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
-# Create your models here.
 
+# Create your models here.
 
 class Post(models.Model):
     title = models.CharField(max_length=70)
@@ -27,7 +28,7 @@ class UserSignUpForm(UserCreationForm):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='media/profile_pics/default_cc3hqr.jpg', upload_to='profile_pics')
+    image = models.ImageField(default='media/profile_pics/default_image_wude5m.jpg', upload_to='media/profile_pics/')
 
     def __str__(self):
         return f'{self.user.username} Profile'

@@ -1,5 +1,6 @@
 {% extends 'news_blog/base.html' %}
 
+
 {% block content %}
     <h1>News Login Page</h1>
     <p>This page is made for you to login easily!</p>
@@ -8,7 +9,7 @@
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend>Sign In</legend>
-                {{ form.as_p }}
+                <!-- {{ form.as_p }} -->
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Login</button>

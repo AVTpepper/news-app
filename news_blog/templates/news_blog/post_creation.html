@@ -1,7 +1,23 @@
 {% extends 'news_blog/base.html' %}
 
-
+{%load crispy_forms_tags %}
 {% block content %}
-    <h1>News Post Creation Page</h1>
-    <p>This is the Page that will help you create your posts!</p>
+<h1>News Post Creation Page</h1>
+<p>This is the Page that will help you create your posts!</p>
+    <div class="content-section">
+        <form action="" method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend>Join Now!</legend>
+                {{ form|crispy }}
+                <!-- {{ form.as_p }} -->
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">Already have an account?<a href="{% url 'login' %}"> Login</a></small>
+        </div>
+    </div>
 {% endblock content %}

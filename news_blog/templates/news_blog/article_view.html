@@ -4,4 +4,12 @@
 {% block content %}
     <h1>News Article View</h1>
     <p>Here you can read about the article you have opened</p>
+
+    
+    <p>This is a place to share and read stories from other people around the world!</p>
+    
+        <h3>{{ object.title }}</h3>
+        <p>By: {{ object.author }} on {{ object.date_posted}}</p>
+        <p>{{ object.content }}</p>
+   
 {% endblock content %}
