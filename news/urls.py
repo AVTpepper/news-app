@@ -37,10 +37,10 @@ urlpatterns = [
 
     path('profile/profile-update', profile_update, name='profile_update'),
 
-    path('article-view/<int:pk>/', PostDetailView.as_view(template_name='news_blog/article_view.html'), name='article_view'),
-    
-    path('article-view/<int:pk>/update', PostUpdateView.as_view(template_name='news_blog/article_view.html'), name='post_update'),
+    path('article-view/<int:pk>/', PostDetailView.as_view(
+        template_name='news_blog/article_view.html'), name='article_view'),
 
+    path('article-view/<int:pk>/update', PostUpdateView.as_view(template_name='news_blog/post_update.html'), name='post_update'),
 
     path('post-creation/', PostCreateView.as_view(template_name='news_blog/post_creation.html'), name='post_creation'),
 
