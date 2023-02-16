@@ -4,6 +4,7 @@ from PIL import Image
 from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from django.urls import reverse
 
 
 # Create your models here.
@@ -16,6 +17,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+  
+    def get_absolute_url(self):
+        return reverse('article_view', kwargs={'pk': self.pk})
 
 
 class UserSignUpForm(UserCreationForm):

@@ -3,18 +3,19 @@ from .models import Post, UserSignUpForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin, ListView):
     model = Post
     context_object_name = 'posts'
     ordering = ["-date_posted"]
     # template_name = 'news_blog/index.html'
 
 
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
 
 # def index(request):
@@ -24,9 +25,13 @@ class PostDetailView(DetailView):
 #     return render(request, 'news_blog/index.html', context)
 
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 def login(request):
@@ -69,6 +74,7 @@ def profile(request):
     return render(request, 'news_blog/profile.html')
 
 
+@login_required
 def profile_update(request):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user)
@@ -91,3 +97,12 @@ def profile_update(request):
         "p_form": p_form
     }
     return render(request, 'news_blog/profile_update.html', context)
+
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    model = Post
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
