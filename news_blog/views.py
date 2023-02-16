@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Post, UserSignUpForm
+from .models import Post, UserSignUpForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -51,4 +51,26 @@ def view_all(request):
 
 @login_required
 def profile(request):
-    return render(request, 'news_blog/profile.html')
+    if request.method == "POST":
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(
+            request.POST,
+            request.FILES,
+            instance=request.user.profile
+            )
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your profile has been Updated!')
+            return redirect('profile')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+# u_form = UserUpdateForm()
+# p_form = ProfileUpdateForm()
+    context = {
+        "u_form": u_form,
+        "p_form": p_form
+    }
+    return render(request, 'news_blog/profile.html', context)
