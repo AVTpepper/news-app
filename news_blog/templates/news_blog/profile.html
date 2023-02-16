@@ -1,10 +1,11 @@
 {% extends 'news_blog/base.html' %}
 {% block content %}
-    <h1>Hello {{ request.user }}</h1>
-    <div class="card">
-        <div class="m-b-25"> <img src="{{ user.profile.image.url }}" class="rounded-circle account-img" id="profile-img" alt="profile picture">
-        </div>
-        <h1 id="profile-h1">{{user.username|title}}</h1>
-        <p class="title">{{user.email}}</p>
+<h1>Hello {{ request.user }}</h1>
+<div class="card">
+    <div class="m-b-25"> <img class="rounded-circle account-img img-radius" id="profile-img" src="{{ user.profile.image.url }}"
+            alt="User-Profile-Image">
     </div>
+    <h1 id="profile-h1">{{user.username|title}}</h1>
+    <p class="title">{{user.email}}</p>
+</div>
 {% endblock content %}
