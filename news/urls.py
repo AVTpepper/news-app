@@ -38,8 +38,7 @@ urlpatterns = [
 
     path('profile/profile-update', profile_update, name='profile_update'),
 
-    path('article-view/<int:pk>/', PostDetailView.as_view(
-        template_name='news_blog/article_view.html'), name='article_view'),
+    path('article-view/<int:pk>/', PostDetailView, name='article_view'),
 
     path('article-view/<int:pk>/update', PostUpdateView.as_view(template_name='news_blog/post_update.html'), name='post_update'),
 
@@ -48,6 +47,10 @@ urlpatterns = [
     path('article-view/<int:pk>/delete', PostDeleteView.as_view(), name='post_delete'),
 
     path('post/<int:pk>/like/', post_like, name='post_like'),
+
+    path('post/<int:pk>/unlike/', post_unlike, name='post_unlike'),
+
+    path('view-all/', all_posts, name='all_posts'),
 
     # path('view-all-posts/', view_all, name='view_all'),
 ]

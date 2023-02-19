@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post, UserSignUpForm, ProfileUpdateForm, UserUpdateForm
+from .models import Post, UserSignUpForm, ProfileUpdateForm, UserUpdateForm, Like
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -73,9 +73,9 @@ def sign_up(request):
         })
 
 
-def article_view(request):
-    return render(
-        request, 'news_blog/article_view.html', {'title': "Article View"})
+# def article_view(request):
+#     return render(
+#         request, 'news_blog/article_view.html', {'title': "Article View"})
 
 
 # def post_creation(request):
@@ -149,4 +149,16 @@ class PostDeleteView(DeleteView):
 def post_like(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.likes.add(request.user)
-    return HttpResponse('Post liked!')
+    return redirect('article_view', pk=post.pk)
+
+
+@login_required
+def post_unlike(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.likes.remove(request.user)
+    return redirect('article_view', pk=post.pk)
+
+
+def all_posts(request):
+    posts = Post.objects.all()
+    return render(request, 'news_blog/all_posts.html', {'posts': posts})
