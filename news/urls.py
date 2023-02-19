@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from news_blog.views import login, sign_up, article_view, profile, profile_update, PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
+from news_blog.views import *
+
 
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
@@ -45,6 +46,8 @@ urlpatterns = [
     path('post-creation/', PostCreateView.as_view(), name='post_creation'),
 
     path('article-view/<int:pk>/delete', PostDeleteView.as_view(), name='post_delete'),
+
+    path('post/<int:pk>/like/', post_like, name='post_like'),
 
     # path('view-all-posts/', view_all, name='view_all'),
 ]

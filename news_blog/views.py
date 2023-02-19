@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, UserSignUpForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views import View
 
 
 # Create your views here.
@@ -17,6 +18,23 @@ class PostListView(LoginRequiredMixin, ListView):
 
 class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = self.get_object()
+        context['num_likes'] = post.like_set.count()
+        context['liked_by_user'] = post.like_set.filter(user=self.request.user).exists()
+        return context
+
+
+# class PostLike(View):
+#     def post(self, request, pk):
+#         post = get_object_or_404(Post, pk=pk)
+#         if post.like_set.filter(user=request.user).exists():
+#             post.like_set.filter(user=request.user).delete()
+#         else:
+#             Like.objects.create(post=post, user=request.user)
+#         return redirect('article-view', pk=pk)
 
 # def index(request):
 #     context = {
@@ -125,3 +143,10 @@ class PostDeleteView(DeleteView):
             return True
         else:
             return False
+
+
+@login_required
+def post_like(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.likes.add(request.user)
+    return HttpResponse('Post liked!')
