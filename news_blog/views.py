@@ -160,6 +160,7 @@ def post_unlike(request, pk):
     return redirect('article_view', pk=post.pk)
 
 
+@login_required
 def all_posts(request):
     # posts = Post.objects.all()
     # queryset = Post.objects.all()
