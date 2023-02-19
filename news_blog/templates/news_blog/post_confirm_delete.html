@@ -1,0 +1,21 @@
+{% extends 'news_blog/base.html' %}
+
+{% block content %}
+    <h2>Deletion Page</h2>
+    <p>You are thinking about deleting your post.. There would be so many people missing out on a good read..</p>
+    <div class="content-section">
+        <form action="" method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend>Delete Post??</legend>
+                <p>You are trying to delete this post: <b>"{{ object.title }}"</b></p>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Delete</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">Changed your mind?<a href="{% url 'index' %}"> Go Back</a></small>
+        </div>
+    </div>
+{% endblock content %}

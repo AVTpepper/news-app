@@ -3,7 +3,7 @@ from .models import Post, UserSignUpForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
@@ -12,7 +12,7 @@ class PostListView(LoginRequiredMixin, ListView):
     model = Post
     context_object_name = 'posts'
     ordering = ["-date_posted"]
-    # template_name = 'news_blog/index.html'
+    template_name = 'news_blog/index.html'
 
 
 class PostDetailView(LoginRequiredMixin, DetailView):
@@ -25,20 +25,13 @@ class PostDetailView(LoginRequiredMixin, DetailView):
 #     return render(request, 'news_blog/index.html', context)
 
 
-class PostCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        else:
-            return False
 
 
 def login(request):
@@ -113,6 +106,18 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        else:
+            return False
+
+
+class PostDeleteView(DeleteView):
+    model = Post
+    success_url = '/'
 
     def test_func(self):
         post = self.get_object()

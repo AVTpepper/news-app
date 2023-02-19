@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from news_blog.views import login, sign_up, article_view, profile, profile_update, PostListView, PostDetailView, PostCreateView, PostUpdateView
+from news_blog.views import login, sign_up, article_view, profile, profile_update, PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
 
-    path('', PostListView.as_view(template_name='news_blog/index.html'), name="index"),
+    path('', PostListView.as_view(), name="index"),
 
     path('login/', auth_views.LoginView.as_view(
         template_name='news_blog/login.html'), name='login'),
@@ -42,7 +42,9 @@ urlpatterns = [
 
     path('article-view/<int:pk>/update', PostUpdateView.as_view(template_name='news_blog/post_update.html'), name='post_update'),
 
-    path('post-creation/', PostCreateView.as_view(template_name='news_blog/post_creation.html'), name='post_creation'),
+    path('post-creation/', PostCreateView.as_view(), name='post_creation'),
+
+    path('article-view/<int:pk>/delete', PostDeleteView.as_view(), name='post_delete'),
 
     # path('view-all-posts/', view_all, name='view_all'),
 ]
