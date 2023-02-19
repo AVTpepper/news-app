@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views import View
+from django.db.models import Q
 
 
 # Create your views here.
@@ -160,5 +161,12 @@ def post_unlike(request, pk):
 
 
 def all_posts(request):
-    posts = Post.objects.all()
-    return render(request, 'news_blog/all_posts.html', {'posts': posts})
+    # posts = Post.objects.all()
+    # queryset = Post.objects.all()
+
+    query = request.GET.get('q')
+    if query:
+        posts = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query)).distinct()
+    else:
+        posts = Post.objects.all()
+    return render(request, 'news_blog/all_posts.html', {'posts': posts, 'query': query})

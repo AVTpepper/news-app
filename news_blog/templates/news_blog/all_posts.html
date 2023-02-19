@@ -4,6 +4,11 @@
 {% block content %}
     <h1>All Posts View</h1>
     <p>Here you can see a list of all the articles</p>
+    <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'all_posts' %}">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{ query }}">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    </form>
     {% for posts in posts %}
         <h3><a href="{% url 'article_view' posts.id %}">{{ posts.title }}</a></h3>
         <p>By: {{ posts.author }} on {{ posts.date_posted}}</p>
