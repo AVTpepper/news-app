@@ -11,7 +11,7 @@
     <h3>{{ object.title }}</h3>
     
     {% if object.image %}
-        <img src="{{ object.image }}" alt="Post Image">
+        <img src="{{ object.image.url }}" alt="Post Image">
     {% endif %}
    
     <a class="mr-2">By: {{ object.author }}</a>
