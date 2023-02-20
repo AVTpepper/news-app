@@ -4,7 +4,7 @@
 {% block content %}
     <h1>All Posts View</h1>
     <p>Here you can see a list of all the articles</p>
-    <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'all_posts' %}">
+    <form class="form-inline my-2 my-lg-0" method="get" enctype="multipart/form-data">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{ query }}">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>

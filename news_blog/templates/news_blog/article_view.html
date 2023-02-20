@@ -22,7 +22,7 @@
         <p>Likes: {{ object.likes.count }}</p>
         {% if user.is_authenticated %}
             {% if user in object.likes.all %}
-                <form action="{% url 'post_unlike' object.id %}" method="POST">
+                <form enctype="multipart/form-data" method="POST">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-outline-secondary">Unlike</button>
                 </form>
@@ -42,4 +42,4 @@
         <a class="btn btn-outline-danger" href="{% url 'post_delete' object.id %}">Delete</a>
     {% endif %}
     
-{% endblock %}
+{% endblock content %}

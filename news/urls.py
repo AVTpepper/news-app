@@ -42,7 +42,7 @@ urlpatterns = [
 
     path('article-view/<int:pk>/update', PostUpdateView.as_view(template_name='news_blog/post_update.html'), name='post_update'),
 
-    path('post-creation/', PostCreateView.as_view(), name='post_creation'),
+    path('post-creation/', PostCreateView.as_view(template_name='news_blog/post_form'), name='post_creation'),
 
     path('article-view/<int:pk>/delete', PostDeleteView.as_view(), name='post_delete'),
 
