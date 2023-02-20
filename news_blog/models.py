@@ -21,6 +21,7 @@ from cloudinary.models import CloudinaryField
 # def get_absolute_url(self):
 #     return reverse('article_view', kwargs={'pk': self.pk})
 
+
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()

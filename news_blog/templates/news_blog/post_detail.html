@@ -2,7 +2,7 @@
 
 
 {% block content %}
-    <h1>News Article View</h1>
+    <h1>News Article View 2</h1>
    
     <p>Here you can read about the article you have opened</p>
    
@@ -10,16 +10,16 @@
    
     <h3>{{ object.title }}</h3>
     
-    {% if object.image_url %}
-        <img src="{{ object.image_url }}" alt="Post Image">
+    {% if object.image %}
+        <img src="{{ object.image }}" alt="Post Image">
     {% endif %}
    
     <a class="mr-2">By: {{ object.author }}</a>
    
     <small class="text-muted">{{ object.date_posted}}</small>
    
-    {% if post.image_url %}
-        <img src="{{ post.image_url }}" alt="Post Image">
+    {% if post.image %}
+        <img src="{{ post.image }}" alt="Post Image">
     {% endif %}
 
     <p>{{ object.content }}</p>
