@@ -51,9 +51,9 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         image = form.cleaned_data['image']
-        if image:
-            uploaded_image = upload(image)
-            form.instance.image = uploaded_image['url']
+        # if image:
+        #     # uploaded_image = upload(image)
+        #     # form.instance.image = uploaded_image['url']
         return super().form_valid(form)
 
 
