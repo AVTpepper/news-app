@@ -7,7 +7,9 @@
     <p>Here you can read about the article you have opened</p>
    
     <p>This is a place to share and read stories from other people around the world!</p>
-   
+    {% if object.image %}
+    <img src="{{ object.image.url }}" alt="{{ object.title }}" class="img-fluid">
+    {% endif %}
     <h3>{{ object.title }}</h3>
    
     <a class="mr-2">By: {{ object.author }}</a>
@@ -40,4 +42,4 @@
         <a class="btn btn-outline-danger" href="{% url 'post_delete' object.id %}">Delete</a>
     {% endif %}
     
-{% endblock content %}
+{% endblock %}

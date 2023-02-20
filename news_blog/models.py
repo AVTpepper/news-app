@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.urls import reverse
-
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 

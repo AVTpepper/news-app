@@ -18,4 +18,13 @@
             <small class="text-muted">Changed your mind?<a href="{% url 'index' %}"> Go Back</a></small>
         </div>
     </div>
+
+
+
+  <h1>New Post</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
 {% endblock content %}
