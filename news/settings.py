@@ -35,7 +35,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["news.herokuapp.com", "localhost"]
+ALLOWED_HOSTS = [
+    "news.herokuapp.com",
+    "localhost", 
+    "news-app-avtpepper.herokuapp.com",
+    ]
 
 
 # Application definition
