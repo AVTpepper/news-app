@@ -27,7 +27,7 @@ class Post(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    likes = models.ManyToManyField(User, related_name='likes', blank=True)
+    likes = models.ManyToManyField(User, related_name='likes', blank=True, through='Like')
     image = CloudinaryField('image', null=True, blank=True)
 
     def __str__(self):

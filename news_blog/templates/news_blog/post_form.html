@@ -19,12 +19,4 @@
         </div>
     </div>
 
-
-
-  <h1>New Post</h1>
-  <form enctype="multipart/form-data" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-  </form>
 {% endblock content %}

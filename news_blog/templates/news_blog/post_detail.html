@@ -11,16 +11,14 @@
     <h3>{{ object.title }}</h3>
     
     {% if object.image %}
-        <img src="{{ object.image.url }}" width="400" height="500" alt="Post Image">
+        <img src="{{ object.image.url }}" width="500" height="400" alt="Post Image">
     {% endif %}
    
     <a class="mr-2">By: {{ object.author }}</a>
    
     <small class="text-muted">{{ object.date_posted}}</small>
    
-    {% if post.image %}
-        <img src="{{ post.image }}" width="400" height="500" alt="Post Image">
-    {% endif %}
+
 
     <p>{{ object.content }}</p>
    
@@ -28,12 +26,12 @@
         <p>Likes: {{ object.likes.count }}</p>
         {% if user.is_authenticated %}
             {% if user in object.likes.all %}
-                <form enctype="multipart/form-data" method="POST">
+                <form  action="{% url 'post_unlike' object.id %}" method="POST">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-outline-secondary">Unlike</button>
                 </form>
             {% else %}
-                <form enctype="multipart/form-data" method="POST">
+                <form  action="{% url 'post_like' object.id %}" method="POST">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-outline-primary">Like</button>
                 </form>

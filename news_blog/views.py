@@ -124,13 +124,13 @@ def profile_update(request):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'image']
 
     def form_valid(self, form):
         image = form.cleaned_data['image']
-        if image:
-            uploaded_image = upload(image)
-            form.instance.image = uploaded_image['url']
+        # if image:
+        #     uploaded_image = upload(image)
+        #     form.instance.image = uploaded_image['url']
         return super().form_valid(form)
 
     def test_func(self):
