@@ -11,7 +11,6 @@
     <h3>{{ object.title }}</h3>
     
     {% if object.image %}
-       <!-- <img src="{{ object.image.url }}" width=300px height=300px object-fit=cover alt="Post Image"> --> 
         <img src="{{ object.image.url }}"  alt="Post Image">
     {% endif %}
    
@@ -19,8 +18,6 @@
    
     <small class="text-muted">{{ object.date_posted}}</small>
    
-
-
     <p>{{ object.content }}</p>
    
     <div>
@@ -29,7 +26,7 @@
             {% if user in object.likes.all %}
                 <form  action="{% url 'post_unlike' object.id %}" method="POST">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-outline-secondary">Unlike</button>
+                    <button type="submit" class="btn btn-outline-danger">Unlike</button>
                 </form>
             {% else %}
                 <form  action="{% url 'post_like' object.id %}" method="POST">
@@ -39,11 +36,6 @@
             {% endif %}
         {% endif %}
     </div>
-
-   
-
-
-   
 
     {% if object.author == user %}
    
