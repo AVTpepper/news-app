@@ -1,9 +1,15 @@
 from cloudinary.forms import CloudinaryJsFileField
+from django.forms import ModelForm
+from cloudinary.forms import CloudinaryFileField
+from .models import Photo, Post
 
 
-class PostForm(forms.ModelForm):
-    image = CloudinaryJsFileField()
-    
-    class Meta:
-        model = Post
-        fields = ['title', 'content', 'image']
+# class PhotoForm(ModelForm):
+#     image = CloudinaryJsFileField(attrs={'accept': 'image/*'})
+#     # image_thumbnail = CloudinaryUnsignedJsFileField(
+#     #     attrs={'accept': 'image/*', 'style': 'display:none;'}
+#     # )
+
+#     class Meta:
+#         model = Photo
+#         fields = ['image']

@@ -14,6 +14,14 @@
                 <button class="btn btn-outline-info" type="submit">Post</button>
             </div>
         </form>
+        <!-- <div id='backend_upload'>
+            <form  method="post"
+                  enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ backend_form }}
+              <input type="submit" value="Upload">
+            </form>
+          </div>  -->
         <div class="border-top pt-3">
             <small class="text-muted">Changed your mind?<a href="{% url 'index' %}"> Go Back</a></small>
         </div>

@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.urls import reverse
 from cloudinary.models import CloudinaryField
+from cloudinary.uploader import upload
 
 # Create your models here.
 
@@ -28,7 +29,14 @@ class Post(models.Model):
     date_posted = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.ManyToManyField(User, related_name='likes', blank=True, through='Like')
-    image = CloudinaryField('image', null=True, blank=True)
+    image = CloudinaryField('image', folder='media/post_pics/', null=True, blank=True, transformation=[{'width': 500, 'height': 500, 'crop': 'limit'}])
+
+    # def save(self, *args, **kwargs):
+    #     if self.image and not self.image.name.startswith('http'):
+    #         # Use CloudinaryUploader to upload the image to Cloudinary
+    #         uploaded = upload(self.image, folder='media/post_pics/', transformation=[{"width": 1000, "height": 1000, "crop": "limit"}])
+    #         self.image = uploaded['secure_url']
+    #     super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -74,3 +82,9 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['image']
+
+
+# class Photo(models.Model):
+#     image = CloudinaryField('image', transformation={
+#         'crop': 'limit', 'width': 1000, 'height': 1000
+#     })

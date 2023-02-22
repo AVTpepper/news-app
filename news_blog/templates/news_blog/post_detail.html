@@ -1,5 +1,5 @@
 {% extends 'news_blog/base.html' %}
-
+{% load cloudinary %}
 
 {% block content %}
     <h1>News Article View 2</h1>
@@ -11,7 +11,8 @@
     <h3>{{ object.title }}</h3>
     
     {% if object.image %}
-        <img src="{{ object.image.url }}" width="500" height="400" alt="Post Image">
+       <!-- <img src="{{ object.image.url }}" width=300px height=300px object-fit=cover alt="Post Image"> --> 
+        <img src="{{ object.image.url }}"  alt="Post Image">
     {% endif %}
    
     <a class="mr-2">By: {{ object.author }}</a>
@@ -38,6 +39,11 @@
             {% endif %}
         {% endif %}
     </div>
+
+   
+
+
+   
 
     {% if object.author == user %}
    

@@ -7,6 +7,25 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views import View
 from django.db.models import Q
+from django.forms import ModelForm
+from cloudinary.forms import CloudinaryFileField, cl_init_js_callbacks
+from cloudinary.models import CloudinaryField
+from django import forms
+from django.http import HttpResponse
+# from .models import Photo
+# from .forms import PhotoForm
+
+
+# def upload(request):
+#     context = dict(sbackend_form=PhotoForm())
+
+#     if request.method == 'POST':
+#         form = PhotoForm(request.POST, request.FILES)
+#         context['posted'] = form.instance
+#         if form.is_valid():
+#             form.save()
+
+#     return render(request, 'upload.html', context)
 
 
 # Create your views here.
@@ -50,10 +69,6 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        image = form.cleaned_data['image']
-        # if image:
-        #     # uploaded_image = upload(image)
-        #     # form.instance.image = uploaded_image['url']
         return super().form_valid(form)
 
 
@@ -178,3 +193,14 @@ def all_posts(request):
     else:
         posts = Post.objects.all()
     return render(request, 'news_blog/all_posts.html', {'posts': posts, 'query': query})
+
+
+# def post_new(request):
+#     if request.method == 'POST':
+#         form = PhotoForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('post_list')
+#     else:
+#         form = PhotoForm()
+#     return render(request, 'post_edit.html', {'form': form})
