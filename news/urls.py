@@ -52,5 +52,5 @@ urlpatterns = [
 
     path('view-all/', all_posts, name='all_posts'),
 
-    # path('view-all-posts/', view_all, name='view_all'),
+    path('article-view/<int:pk>/comment/', add_comment_to_post, name='add_comment_to_post'),
 ]

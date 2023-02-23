@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post, UserSignUpForm, ProfileUpdateForm, UserUpdateForm, Like
+from .models import Post, UserSignUpForm, ProfileUpdateForm, UserUpdateForm, Like, Comment
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -12,7 +12,8 @@ from cloudinary.forms import CloudinaryFileField, cl_init_js_callbacks
 from cloudinary.models import CloudinaryField
 from django import forms
 from django.http import HttpResponse
-
+from django.urls import reverse_lazy
+from .forms import CommentForm
 # from .models import Photo
 # from .forms import PhotoForm
 
@@ -45,9 +46,34 @@ class PostDetailView(LoginRequiredMixin, DetailView):
         post = self.get_object()
         context['num_likes'] = post.like_set.count()
         context['liked_by_user'] = post.like_set.filter(user=self.request.user).exists()
+        context['comment_form'] = CommentForm()
         return context
 
 
+@login_required
+def add_comment_to_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return redirect('article_view', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'news_blog/add_comment_to_post.html', {'form': form})
+
+
+class UserPostListView(ListView): # we might use this
+    model = Post
+    template_name = 'news_blog/user_posts.html'
+    context_object_name = 'posts'
+    paginate_by = 5
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-date_posted')
 # class PostLike(View):
 #     def post(self, request, pk):
 #         post = get_object_or_404(Post, pk=pk)

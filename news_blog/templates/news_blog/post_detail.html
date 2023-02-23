@@ -44,4 +44,18 @@
         <a class="btn btn-outline-danger" href="{% url 'post_delete' object.id %}">Delete</a>
     {% endif %}
     
+    <h2>Comments</h2>
+  <ul>
+    {% for comment in comments %}
+      <li>{{ comment.author }}: {{ comment.text }}</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Add a comment</h3>
+  <form method="post" action="{% url 'add_comment_to_post' post.pk %}">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">Add comment</button>
+  </form>
+
 {% endblock content %}
