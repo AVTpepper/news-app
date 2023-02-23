@@ -12,6 +12,7 @@ from cloudinary.forms import CloudinaryFileField, cl_init_js_callbacks
 from cloudinary.models import CloudinaryField
 from django import forms
 from django.http import HttpResponse
+
 # from .models import Photo
 # from .forms import PhotoForm
 
