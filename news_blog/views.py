@@ -31,11 +31,25 @@ from .forms import CommentForm
 
 
 # Create your views here.
+
+# def most_liked_posts(request):
+#     most_liked_posts = Post.objects.order_by('-likes')[:4]
+#     print(most_liked_posts)
+#     context = {'most_liked_posts': most_liked_posts}
+#     return render(request, 'news_blog/index.html', context)
+
+
 class PostListView(LoginRequiredMixin, ListView):
     model = Post
     context_object_name = 'posts'
     ordering = ["-date_posted"]
+    paginate_by = 6
     template_name = 'news_blog/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['most_liked_posts'] = Post.objects.order_by('-likes')[:4]
+        return context
 
 
 class PostDetailView(LoginRequiredMixin, DetailView):
@@ -43,37 +57,45 @@ class PostDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         post = self.get_object()
+        comments = Comment.objects.filter(post=post)
+
         context['num_likes'] = post.like_set.count()
         context['liked_by_user'] = post.like_set.filter(user=self.request.user).exists()
         context['comment_form'] = CommentForm()
+        context['comments'] = comments
         return context
 
 
 @login_required
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
+
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
+            comment.author = request.user
             comment.save()
             return redirect('article_view', pk=post.pk)
     else:
         form = CommentForm()
-    return render(request, 'news_blog/add_comment_to_post.html', {'form': form})
+    comments = post.comments.all()
+    return render(request, 'article_view.html', {'form': form, 'post': post, 'comments': comments})
 
 
-class UserPostListView(ListView): # we might use this
-    model = Post
-    template_name = 'news_blog/user_posts.html'
-    context_object_name = 'posts'
-    paginate_by = 5
+# class UserPostListView(ListView): # we might use this
+#     model = Post
+#     template_name = 'news_blog/user_posts.html'
+#     context_object_name = 'posts'
+#     paginate_by = 5
 
-    def get_queryset(self):
-        user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Post.objects.filter(author=user).order_by('-date_posted')
+#     def get_queryset(self):
+#         user = get_object_or_404(User, username=self.kwargs.get('username'))
+#         return Post.objects.filter(author=user).order_by('-date_posted')
+
 # class PostLike(View):
 #     def post(self, request, pk):
 #         post = get_object_or_404(Post, pk=pk)
@@ -88,7 +110,6 @@ class UserPostListView(ListView): # we might use this
 #         'posts': Post.objects.all()
 #     }
 #     return render(request, 'news_blog/index.html', context)
-
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
