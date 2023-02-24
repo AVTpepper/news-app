@@ -1,6 +1,10 @@
 {% extends 'news_blog/base.html' %}
 {% load cloudinary %}
 
+{% block title %}
+  Article: {{ object.title }}
+{% endblock %}
+
 {% block content %}
 <h1>News Article View 2</h1>
 
