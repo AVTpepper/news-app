@@ -2,60 +2,70 @@
 {% load cloudinary %}
 
 {% block content %}
-    <h1>News Article View 2</h1>
-   
-    <p>Here you can read about the article you have opened</p>
-   
-    <p>This is a place to share and read stories from other people around the world!</p>
-   
-    <h3>{{ object.title }}</h3>
-    
-    {% if object.image %}
-        <img src="{{ object.image.url }}"  alt="Post Image">
+<h1>News Article View 2</h1>
+
+<p>Here you can read about the article you have opened</p>
+
+<p>This is a place to share and read stories from other people around the world!</p>
+
+<h3>{{ object.title }}</h3>
+
+{% if object.image %}
+<img src="{{ object.image.url }}" alt="Post Image">
+{% endif %}
+
+<a class="mr-2">By: {{ object.author }}</a>
+
+<small class="text-muted">{{ object.date_posted}}</small>
+
+<p>{{ object.content }}</p>
+
+<div>
+    <p>Likes: {{ object.likes.count }}</p>
+    {% if user.is_authenticated %}
+    {% if user in object.likes.all %}
+    <form action="{% url 'post_unlike' object.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-danger">Unlike</button>
+    </form>
+    {% else %}
+    <form action="{% url 'post_like' object.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-primary">Like</button>
+    </form>
     {% endif %}
-   
-    <a class="mr-2">By: {{ object.author }}</a>
-   
-    <small class="text-muted">{{ object.date_posted}}</small>
-   
-    <p>{{ object.content }}</p>
-   
-    <div>
-        <p>Likes: {{ object.likes.count }}</p>
-        {% if user.is_authenticated %}
-            {% if user in object.likes.all %}
-                <form  action="{% url 'post_unlike' object.id %}" method="POST">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-outline-danger">Unlike</button>
-                </form>
-            {% else %}
-                <form  action="{% url 'post_like' object.id %}" method="POST">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-outline-primary">Like</button>
-                </form>
-            {% endif %}
-        {% endif %}
+    {% endif %}
+</div>
+
+{% if object.author == user %}
+
+<a class="btn btn-outline-success" href="{% url 'post_update' object.id %}">Update</a>
+
+<a class="btn btn-outline-danger" href="{% url 'post_delete' object.id %}">Delete</a>
+{% endif %}
+
+<h2>Comments</h2>
+<ul class="list-unstyled">
+  {% for comment in comments %}
+  <li class="media my-4">
+    <img class="rounded-circle account-img img-radius" src="{{ user.profile.image.url }}"
+            alt="User-Profile-Image">
+    <div class="media-body">
+      <h5 class="mt-0 mb-1">{{ comment.author }}</h5>
+      <p>{{ comment.text }}</p>
     </div>
+  </li>
+  {% empty %}
+  <li>No comments yet.</li>
+  {% endfor %}
+</ul>
 
-    {% if object.author == user %}
-   
-        <a class="btn btn-outline-success" href="{% url 'post_update' object.id %}">Update</a>
-    
-        <a class="btn btn-outline-danger" href="{% url 'post_delete' object.id %}">Delete</a>
-    {% endif %}
-    
-    <h2>Comments</h2>
-  <ul>
-    {% for comment in comments %}
-      <li>{{ comment.author }}: {{ comment.text }}</li>
-    {% endfor %}
-  </ul>
-
-  <h3>Add a comment</h3>
-  <form method="post" action="{% url 'add_comment_to_post' post.pk %}">
+<h3>Add a comment</h3>
+<h4>posting as: {{ user.username }}</h4>
+<form method="post" enctype="multipart/form-data" action="{% url 'add_comment_to_post' post.pk %}">
     {% csrf_token %}
     {{ comment_form.as_p }}
     <button type="submit">Add comment</button>
-  </form>
+</form>
 
 {% endblock content %}
