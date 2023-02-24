@@ -8,6 +8,7 @@ from django.urls import reverse
 from cloudinary.models import CloudinaryField
 from cloudinary.uploader import upload
 from django.contrib.auth import get_user_model
+# from .forms import CommentForm
 
 # Create your models here.
 
@@ -87,7 +88,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default=None)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)
