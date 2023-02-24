@@ -10,71 +10,14 @@
         </div>
     </div>
     <p>This is a place to share and read stories from other people around the world!</p>
-    {% for posts in posts %}
+    <!-- {% for posts in posts %}
         <h3><a href="{% url 'article_view' pk=posts.pk %}">{{ posts.title }}</a></h3>
         <p>By: {{ posts.author }} on {{ posts.date_posted}}</p>
         <p>{{ posts.content }}</p>
 
-    {% endfor %}
+    {% endfor %} -->
 
 
-    <!-- Most liked posts section -->
-<h2>Most liked posts</h2>
-{% if most_liked_posts %}
-  <div id="most-liked-posts-carousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      {% for post in most_liked_posts %}
-        <div class="carousel-item{% if forloop.first %} active{% endif %}">
-          <a href="{% url 'article_view' post.pk %}">
-            <img src="{{ post.image.url }}" class="d-block w-100" alt="{{ post.title }}">
-          </a>
-          <div class="carousel-caption d-none d-md-block">
-            <h5><a href="{% url 'article_view' post.pk %}">{{ post.title }}</a></h5>
-            <p>{{ post.get_short_content }}</p>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#most-liked-posts-carousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#most-liked-posts-carousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-{% else %}
-  <p>No most liked posts to display.</p>
-{% endif %}
-
-
-
-
-<div class="container">
-    <h2>Most Liked Posts</h2>
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        {% for post in most_liked_posts %}
-        <div class="carousel-item {% if forloop.first %}active{% endif %}">
-          <img src="{{ post.image.url }}" class="d-block w-100" alt="{{ post.title }}">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>{{ post.title }}</h5>
-            <p>{{ post.content|truncatewords:20 }}</p>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-  </div>
   
   <!-- List of posts section -->
   <div class="container">
@@ -88,12 +31,14 @@
             <h5 class="card-title">{{ post.title }}</h5>
             <p class="card-text">{{ post.content|truncatewords:20 }}</p>
             <a href="{% url 'article_view' post.pk %}" class="btn btn-primary">Read More</a>
+            <span>likes: {{ post.likes.count }}<i class="fa-regular fa-thumbs-up"></i></span>
           </div>
         </div>
       </div>
       {% endfor %}
     </div>
   </div>
+  <a class="btn btn-primary" href="{% url 'all_posts' %}">View More Posts</a>
 
 
 {% endblock content %}
