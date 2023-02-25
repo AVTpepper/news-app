@@ -18,6 +18,8 @@ from .forms import CommentForm
 # from .forms import PhotoForm
 
 
+def handle_not_found(request, exception):
+    return render(request, 'news_blog/not-found.html')
 # def upload(request):
 #     context = dict(sbackend_form=PhotoForm())
 
@@ -157,7 +159,9 @@ def sign_up(request):
 
 @login_required
 def profile(request):
-    return render(request, 'news_blog/profile.html')
+    user_posts = Post.objects.filter(author=request.user)
+    context = {'user_posts': user_posts}
+    return render(request, 'news_blog/profile.html', context)
 
 
 @login_required
