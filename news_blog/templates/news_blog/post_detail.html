@@ -18,9 +18,11 @@
 <img src="{{ object.image.url }}" alt="Post Image">
 {% endif %}
 
-<a class="mr-2">By: {{ object.author }}</a>
+<p class="mr-2">By: {{ object.author }}</p>
+<p class="text-muted">{{ object.date_posted}}</p>
+<!-- <p class="mr-2">By: {{ object.author }}</p> -->
 
-<small class="text-muted">{{ object.date_posted}}</small>
+<!-- <small class="text-muted">{{ object.date_posted}}</small> -->
 
 <p>{{ object.content }}</p>
 
