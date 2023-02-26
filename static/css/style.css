@@ -1,12 +1,60 @@
-nav {
-    background: rgb(0, 0, 128);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Set the background color of the navbar */
+nav.navbar-dark {
+    background-color: rgb(0, 0, 128);
+  }
+  
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .navbar-toggler {
+    color: rgb(255, 215, 0);
+  }
+  
+  /* Set the background color of the links when hovered */
+.navbar-dark .navbar-nav .nav-link:hover {
+    background-color: rgb(255, 105, 120);
+  }
+  
+  /* Set the border color of the toggle button when focused */
+.navbar-dark .navbar-toggler:focus {
+    box-shadow: 0 0 0 2px rgb(255, 215, 0);
+    border-color: rgb(255, 215, 0);
+  }
+
+.navbar-dark .navbar-brand {
+    color: rgb(255, 215, 0);
+  }
+  
+  /* Set the color of the navbar brand icon */
+.navbar-dark .navbar-brand i {
+    color: rgb(255, 215, 0);
+  }
+
+.navbar-dark .navbar-brand:hover,
+.navbar-dark .navbar-brand:hover i {
+  color: rgb(255, 105, 120);
+}
+/* nav.navbar-dark {
+    background-color: orange;
+    
+}
+
+.navbar.navbar-dark .navbar-nav .nav-link {
+    color: red;
+  }
+
+.navbar-dark .navbar-toggler {
+    background-color: #FF0000; 
+    border-color: #FF0000; 
+} */
+ 
 body {
     background: rgb(250, 250, 255);
 }
-
-
 
 .account-img {
     height: 125px;
@@ -22,4 +70,50 @@ body {
     display: block;
     margin: auto;
     margin-top: 20px;
+}
+
+/* html, body{
+    height: 100%;
+} */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;;
+}
+
+footer {
+    background-color: #000080;
+    justify-content: end;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+footer .row {
+    justify-content: center;
+    margin: auto;
+}
+
+.container {
+    flex-grow: 1;
+}
+
+.view-more-posts-btn {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.view-more-posts-btn a {
+    width: 80%;
+}
+
+.post-creation-section {
+    text-align: center;
+}
+
+.post-creation-section .row {
+    justify-content: center;
 }

@@ -2,15 +2,15 @@
 
 
 {% block content %}
-    <!-- <h1>News Home</h1> 
+<!-- <h1>News Home</h1> 
     <hr> -->
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container text-center">
-            <h1 class="display-4">The power of sharing stories</h1>
-        </div>
-    </div>
-    <p>This is a place to share and read stories from other people around the world!</p>
-    <!-- {% for posts in posts %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container text-center">
+    <h1 class="display-4">The power of sharing stories</h1>
+  </div>
+</div>
+<p>This is a place to share and read stories from other people around the world!</p>
+<!-- {% for posts in posts %}
         <h3><a href="{% url 'article_view' pk=posts.pk %}">{{ posts.title }}</a></h3>
         <p>By: {{ posts.author }} on {{ posts.date_posted}}</p>
         <p>{{ posts.content }}</p>
@@ -18,28 +18,59 @@
     {% endfor %} -->
 
 
-  
-  <!-- List of posts section -->
-  <div class="container">
-    <h2>List of Posts</h2>
-    <div class="row">
-      {% for post in posts %}
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
-          <div class="card-body">
-            <h5 class="card-title">{{ post.title }}</h5>
-            <p class="muted">{{ post.author }}</p>
-            <p class="card-text">{{ post.content|truncatewords:20 }}</p>
-            <a href="{% url 'article_view' post.pk %}" class="btn btn-primary">Read More</a>
-            <span>likes: {{ post.likes.count }}<i class="fa-regular fa-thumbs-up"></i></span>
-          </div>
+
+<!-- List of posts section -->
+<div class="container">
+  <h2>List of Posts</h2>
+  <div class="row">
+    {% for post in posts %}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="muted">{{ post.author }}</p>
+          <p class="card-text">{{ post.content|truncatewords:20 }}</p>
+          <a href="{% url 'article_view' post.pk %}" class="btn btn-primary">Read More</a>
+          <span>likes: {{ post.likes.count }}<i class="fa-regular fa-thumbs-up"></i></span>
         </div>
       </div>
-      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+<div class="view-more-posts-btn">
+  <a class="btn btn-success" href="{% url 'all_posts' %}">View More Posts</a>
+</div>
+<hr>
+<div class="container post-creation-section">
+  <div class="row mx-auto">
+    <div class="col-lg-6 col-md-8 col-sm-12">
+      <h4>Make Your Own Post!</h4>
+      <p>Do this to allow others to perhaps learn more about you or something that has happened</p>
+      <p>Sharing stories is sharing experience and newfound knowledge. It's a possibility to teach, but also to learn.</p>
+      <p>All you need to do to create a post is click the button below, add a title and some content, add a picture if you would like, then hit post!</p>
+      <a class="btn btn-success col-lg-4 col-md-6 col-sm-10" href="{% url 'post_creation' %}">Create A Post</a>
     </div>
   </div>
-  <a class="btn btn-primary" href="{% url 'all_posts' %}">View More Posts</a>
+</div>
+<!-- <div class="container post-creation-section">
+
+  <div class="col-lg-6 col-md-8 col-sm-12">
+    <h4>Make Your Own Post!</h3>
+      <p>Do this to allow others to perhaps learn more about you or something that has happened</p>
+      <p>Sharing stories is sharing experience and newfound knowledge. Its a possiblity to teach, but also to learn.
+      </p>
+      <p>All you need to do to create a post is click the button bellow, add a title and some content, add a picture
+        if
+        you would like, then hit post!</p>
+      <a><a class="btn btn-success col-lg-4 col-md-6 col-sm-10" href="{% url 'post_creation' %}">Create A Post</a></a>
+  </div>
+</div> -->
+
+</div>
+
 
 
 {% endblock content %}
