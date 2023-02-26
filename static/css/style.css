@@ -7,37 +7,38 @@
 /* Set the background color of the navbar */
 nav.navbar-dark {
     background-color: rgb(0, 0, 128);
-  }
-  
+}
+
 .navbar-dark .navbar-nav .nav-link,
 .navbar-dark .navbar-toggler {
     color: rgb(255, 215, 0);
-  }
-  
-  /* Set the background color of the links when hovered */
+}
+
+/* Set the background color of the links when hovered */
 .navbar-dark .navbar-nav .nav-link:hover {
     background-color: rgb(255, 105, 120);
-  }
-  
-  /* Set the border color of the toggle button when focused */
+}
+
+/* Set the border color of the toggle button when focused */
 .navbar-dark .navbar-toggler:focus {
     box-shadow: 0 0 0 2px rgb(255, 215, 0);
     border-color: rgb(255, 215, 0);
-  }
+}
 
 .navbar-dark .navbar-brand {
     color: rgb(255, 215, 0);
-  }
-  
-  /* Set the color of the navbar brand icon */
+}
+
+/* Set the color of the navbar brand icon */
 .navbar-dark .navbar-brand i {
     color: rgb(255, 215, 0);
-  }
+}
 
 .navbar-dark .navbar-brand:hover,
 .navbar-dark .navbar-brand:hover i {
-  color: rgb(255, 105, 120);
+    color: rgb(255, 105, 120);
 }
+
 /* nav.navbar-dark {
     background-color: orange;
     
@@ -51,7 +52,7 @@ nav.navbar-dark {
     background-color: #FF0000; 
     border-color: #FF0000; 
 } */
- 
+
 body {
     background: rgb(250, 250, 255);
 }
@@ -61,9 +62,9 @@ body {
     width: 125px;
     margin-right: 20px;
     margin-bottom: 16px;
-  }
+}
 
-#profile-img{
+#profile-img {
     margin-top: 20px;
     box-shadow: 0 14px 18px 0 rgba(0, 0, 0, 0.486);
     border-radius: 50px;
@@ -80,7 +81,8 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;;
+    justify-content: space-between;
+    ;
 }
 
 footer {
@@ -116,4 +118,13 @@ footer .row {
 
 .post-creation-section .row {
     justify-content: center;
+}
+
+.nav-link {
+    color: rgb(255, 215, 0);
+}
+
+.nav-link:hover {
+    color: rgb(255, 215, 0);
+    background-color: rgb(255, 105, 120);
 }
