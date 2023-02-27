@@ -11,11 +11,6 @@
     <h2 id="profile-h1">Hello {{user.username|title}}!</h2>
     <hr>
     <p class="title">{{user.email}}</p>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            {{ p_form.as_p }}
-        </fieldset>
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit"><a href="{% url 'profile_update' %}">Update
                     Profile</a></button>
