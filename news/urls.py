@@ -56,4 +56,4 @@ urlpatterns = [
 
 ]
 
-# handler404 = "news_blog.views.handle_not_found"
+handler404 = "news_blog.views.handle_not_found"
