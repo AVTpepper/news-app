@@ -36,9 +36,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "news.herokuapp.com",
     "localhost",
-    "news-app-avtpepper.herokuapp.com",
+    "news-app-avtpepper.herokuapp.com/",
     ]
 
 
@@ -47,6 +46,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -139,21 +139,36 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-cloudinary.config(
-  secure=True,
+STATICFILES_STORAGE = (
+    'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+    )
+STATICFILES_DIRS = [os.path.join(
+    BASE_DIR, 'static',
 )
-
-STATIC_URL = '/static/'
+]
 STATIC_ROOT = os.path.join(
     BASE_DIR, 'staticfiles'
 )
-cloudinary.api.resources.secure = True
-cloudinary.uploader.secure = True
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# STATIC_URL = '/static/'
+
+# STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# cloudinary.config(
+#   secure=True,
+# )
+
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(
+#     BASE_DIR, 'staticfiles'
+# )
+# cloudinary.api.resources.secure = True
+# cloudinary.uploader.secure = True
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # MEDIA_URL = '/media/'
