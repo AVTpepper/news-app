@@ -14,6 +14,7 @@ from django import forms
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from .forms import CommentForm
+from django.core.paginator import Paginator
 # from .models import Photo
 # from .forms import PhotoForm
 
@@ -159,9 +160,21 @@ def sign_up(request):
 
 @login_required
 def profile(request):
-    user_posts = Post.objects.filter(author=request.user)
-    context = {'user_posts': user_posts}
+    user = request.user
+    user_posts = user.post_set.all().order_by('-date_posted')
+    
+    paginator = Paginator(user_posts, 3)
+    page = request.GET.get('page')
+    user_posts = paginator.get_page(page)
+    
+    u_form = UserUpdateForm(instance=request.user)
+    p_form = ProfileUpdateForm(instance=request.user.profile)
+    
+    context = {'user': user, 'u_form': u_form, 'p_form': p_form, 'user_posts': user_posts}
     return render(request, 'news_blog/profile.html', context)
+    # user_posts = Post.objects.filter(author=request.user)
+    # context = {'user_posts': user_posts}
+    # return render(request, 'news_blog/profile.html', context)
 
 
 @login_required
