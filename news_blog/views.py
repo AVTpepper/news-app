@@ -15,31 +15,13 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from .forms import CommentForm
 from django.core.paginator import Paginator
-# from .models import Photo
-# from .forms import PhotoForm
 
 
 def handle_not_found(request, exception):
     return render(request, 'news_blog/not-found.html')
-# def upload(request):
-#     context = dict(sbackend_form=PhotoForm())
-
-#     if request.method == 'POST':
-#         form = PhotoForm(request.POST, request.FILES)
-#         context['posted'] = form.instance
-#         if form.is_valid():
-#             form.save()
-
-#     return render(request, 'upload.html', context)
 
 
 # Create your views here.
-
-# def most_liked_posts(request):
-#     most_liked_posts = Post.objects.order_by('-likes')[:4]
-#     print(most_liked_posts)
-#     context = {'most_liked_posts': most_liked_posts}
-#     return render(request, 'news_blog/index.html', context)
 
 
 class PostListView(LoginRequiredMixin, ListView):
@@ -89,31 +71,6 @@ def add_comment_to_post(request, pk):
     return render(request, 'article_view.html', {'form': form, 'post': post, 'comments': comments})
 
 
-# class UserPostListView(ListView): # we might use this
-#     model = Post
-#     template_name = 'news_blog/user_posts.html'
-#     context_object_name = 'posts'
-#     paginate_by = 5
-
-#     def get_queryset(self):
-#         user = get_object_or_404(User, username=self.kwargs.get('username'))
-#         return Post.objects.filter(author=user).order_by('-date_posted')
-
-# class PostLike(View):
-#     def post(self, request, pk):
-#         post = get_object_or_404(Post, pk=pk)
-#         if post.like_set.filter(user=request.user).exists():
-#             post.like_set.filter(user=request.user).delete()
-#         else:
-#             Like.objects.create(post=post, user=request.user)
-#         return redirect('article-view', pk=pk)
-
-# def index(request):
-#     context = {
-#         'posts': Post.objects.all()
-#     }
-#     return render(request, 'news_blog/index.html', context)
-
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content', 'image']
@@ -144,37 +101,20 @@ def sign_up(request):
         })
 
 
-# def article_view(request):
-#     return render(
-#         request, 'news_blog/article_view.html', {'title': "Article View"})
-
-
-# def post_creation(request):
-#     return render(
-#         request, 'news_blog/post_creation.html', {'title': "Post Creation"})
-
-
-# def view_all(request):
-#     return render(request, 'news_blog/view_all.html', {'title': "All Posts"})
-
-
 @login_required
 def profile(request):
     user = request.user
     user_posts = user.post_set.all().order_by('-date_posted')
-    
+
     paginator = Paginator(user_posts, 3)
     page = request.GET.get('page')
     user_posts = paginator.get_page(page)
-    
+
     u_form = UserUpdateForm(instance=request.user)
     p_form = ProfileUpdateForm(instance=request.user.profile)
-    
+
     context = {'user': user, 'u_form': u_form, 'p_form': p_form, 'user_posts': user_posts}
     return render(request, 'news_blog/profile.html', context)
-    # user_posts = Post.objects.filter(author=request.user)
-    # context = {'user_posts': user_posts}
-    # return render(request, 'news_blog/profile.html', context)
 
 
 @login_required
@@ -208,9 +148,6 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         image = form.cleaned_data['image']
-        # if image:
-        #     uploaded_image = upload(image)
-        #     form.instance.image = uploaded_image['url']
         return super().form_valid(form)
 
     def test_func(self):
@@ -249,23 +186,9 @@ def post_unlike(request, pk):
 
 @login_required
 def all_posts(request):
-    # posts = Post.objects.all()
-    # queryset = Post.objects.all()
-
     query = request.GET.get('q')
     if query:
         posts = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query)).distinct()
     else:
         posts = Post.objects.all()
     return render(request, 'news_blog/all_posts.html', {'posts': posts, 'query': query})
-
-
-# def post_new(request):
-#     if request.method == 'POST':
-#         form = PhotoForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('post_list')
-#     else:
-#         form = PhotoForm()
-#     return render(request, 'post_edit.html', {'form': form})
