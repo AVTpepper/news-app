@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Update Post</h1>
-    <p>This is the Page that will help you create your posts!</p>
+    <p>This is the Page that will help you update your posts!</p>
     <div class="content-section">
         <form enctype="multipart/form-data" method="post">
             {% csrf_token %}
@@ -15,16 +15,7 @@
             </div>
         </form>
         <div class="border-top pt-3">
-            <small class="text-muted">Changed your mind?<a href="{% url 'index' %}"> Go home</a></small>
+            <small class="text-muted">Changed your mind?<a href="{% url 'article_view' post.pk %}"> Go Back</a></small>
         </div>
     </div>
-
-
-
-  <h1>Update Post</h1>
-  <form enctype="multipart/form-data" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-  </form>
 {% endblock content %}
