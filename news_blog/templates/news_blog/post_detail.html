@@ -53,29 +53,31 @@
             <br>
             <br>
             <a href="{% url 'index' %}" class="btn btn-secondary">Back</a>
-           <hr>
+            <hr>
             <h2>Comments</h2>
             <ul class="list-unstyled">
-              {% for comment in comments %}
+            {% for comment in comments %}
               <li class="media my-4 d-flex flex-column flex-sm-row">
-                <img class="rounded-circle account-img img-radius mb-3 mb-sm-0" src="{{ user.profile.image.url }}" alt="User-Profile-Image">
+                <img class="rounded-circle account-img img-radius mb-3 mb-sm-0" src="{{ user.profile.image.url }}"
+                  alt="User-Profile-Image">
                 <div class="media-body">
                   <h5 class="mt-0 mb-1">{{ comment.author }}</h5>
                   <p>{{ comment.text }}</p>
                 </div>
               </li>
-              <hr>
-              {% empty %}
-              <li>No comments yet.</li>
-              {% endfor %}
             </ul>
+            {% empty %}
+            <p>No comments yet.</p>
+            {% endfor %}
+
             <div>
               <h3>Add a comment</h3>
               <h4>Posting as: {{ user.username }}</h4>
-              <form method="post" class="form-group " enctype="multipart/form-data" action="{% url 'add_comment_to_post' post.pk %}">
+              <form method="post" class="form-group " enctype="multipart/form-data"
+                action="{% url 'add_comment_to_post' post.pk %}">
                 <div class="d-flex flex-column comment-form">{% csrf_token %}
-                {{ comment_form.as_p}}
-              </div>
+                  {{ comment_form.as_p}}
+                </div>
                 <button class="btn btn-success mt-2 mb-4" type="submit">Add comment</button>
               </form>
             </div>

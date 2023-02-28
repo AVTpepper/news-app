@@ -1,18 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post, UserSignUpForm, ProfileUpdateForm, UserUpdateForm, Like, Comment
+from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views import View
 from django.db.models import Q
-from django.forms import ModelForm
-from cloudinary.forms import CloudinaryFileField, cl_init_js_callbacks
-from cloudinary.models import CloudinaryField
-from django import forms
-from django.http import HttpResponse
-from django.urls import reverse_lazy
 from .forms import CommentForm
 from django.core.paginator import Paginator
 
@@ -47,7 +46,8 @@ class PostDetailView(LoginRequiredMixin, DetailView):
         comments = Comment.objects.filter(post=post)
 
         context['num_likes'] = post.like_set.count()
-        context['liked_by_user'] = post.like_set.filter(user=self.request.user).exists()
+        context['liked_by_user'] = post.like_set.filter(
+            user=self.request.user).exists()
         context['comment_form'] = CommentForm()
         context['comments'] = comments
         return context
@@ -68,7 +68,9 @@ def add_comment_to_post(request, pk):
     else:
         form = CommentForm()
     comments = post.comments.all()
-    return render(request, 'article_view.html', {'form': form, 'post': post, 'comments': comments})
+    return render(
+        request, 'article_view.html', {
+            'form': form, 'post': post, 'comments': comments})
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -91,7 +93,10 @@ def sign_up(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(
-                request, f'Account Successfully Created for {username} Login Now!')
+                request,
+                f'Account Successfully Created for {username} Login Now!'
+                )
+
             return redirect('login')
     else:
         form = UserSignUpForm()
@@ -113,7 +118,13 @@ def profile(request):
     u_form = UserUpdateForm(instance=request.user)
     p_form = ProfileUpdateForm(instance=request.user.profile)
 
-    context = {'user': user, 'u_form': u_form, 'p_form': p_form, 'user_posts': user_posts}
+    context = {
+        'user': user,
+        'u_form': u_form,
+        'p_form': p_form,
+        'user_posts': user_posts
+        }
+
     return render(request, 'news_blog/profile.html', context)
 
 
@@ -188,7 +199,9 @@ def post_unlike(request, pk):
 def all_posts(request):
     query = request.GET.get('q')
     if query:
-        posts = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query)).distinct()
+        posts = Post.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query)).distinct()
     else:
         posts = Post.objects.all()
-    return render(request, 'news_blog/all_posts.html', {'posts': posts, 'query': query})
+    return render(
+        request, 'news_blog/all_posts.html', {'posts': posts, 'query': query})

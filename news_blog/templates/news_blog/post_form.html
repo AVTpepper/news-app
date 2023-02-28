@@ -2,41 +2,27 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="text-center my-4">New Post Creation Page</h1>
-    <p class="text-center mb-5">This is the Page that will help you create your posts!</p>
-    <div class="row  creation-form">
-      <div class="col-lg-8 col-md-10">
-        <form enctype="multipart/form-data" method="post">
-          {% csrf_token %}
-          <fieldset class="form-group">
-            <legend>New Post</legend>
-            <div class="d-flex flex-column comment-form">
+  <h1 class="text-center my-4">New Post Creation Page</h1>
+  <p class="text-center mb-5">This is the Page that will help you create your posts!</p>
+  <div class="row  creation-form">
+    <div class="col-lg-8 col-md-10">
+      <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          <legend>New Post</legend>
+          <div class="d-flex flex-column comment-form">
             {{ form.as_p }}
-        </div>
-          </fieldset>
-          <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Post</button>
           </div>
-        </form>
-      </div>
+        </fieldset>
+        <div class="form-group">
+          <button class="btn btn-outline-info" type="submit">Post</button>
+        </div>
+      </form>
     </div>
   </div>
-    <!-- <h1>New Post Creation Page</h1>
-    <p>This is the Page that will help you create your posts!</p>
-    <div class="content-section">
-        <form enctype="multipart/form-data" method="post">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend>New Post</legend>
-                {{ form.as_p }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Post</button>
-            </div>
-        </form> -->
-        <div class="border-top pt-3">
-            <small class="text-muted">Changed your mind?<a href="{% url 'index' %}"> Go Back</a></small>
-        </div>
-    </div>
+</div>
+<div class="border-top pt-3">
+  <small class="text-muted">Changed your mind?<a href="{% url 'index' %}"> Go Back</a></small>
+</div>
 
 {% endblock content %}

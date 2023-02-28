@@ -38,13 +38,26 @@ urlpatterns = [
 
     path('profile/profile-update', profile_update, name='profile_update'),
 
-    path('article-view/<int:pk>/', PostDetailView.as_view(), name='article_view'),
+    path(
+        'article-view/<int:pk>/',
+        PostDetailView.as_view(),
+        name='article_view'
+        ),
 
-    path('article-view/<int:pk>/update', PostUpdateView.as_view(template_name='news_blog/post_update.html'), name='post_update'),
+    path(
+        'article-view/<int:pk>/update',
+        PostUpdateView.as_view(
+            template_name='news_blog/post_update.html'),
+        name='post_update'
+        ),
 
     path('post-creation/', PostCreateView.as_view(), name='post_creation'),
 
-    path('article-view/<int:pk>/delete', PostDeleteView.as_view(), name='post_delete'),
+    path(
+        'article-view/<int:pk>/delete',
+        PostDeleteView.as_view(),
+        name='post_delete'
+        ),
 
     path('post/<int:pk>/like/', post_like, name='post_like'),
 
@@ -52,7 +65,11 @@ urlpatterns = [
 
     path('view-all/', all_posts, name='all_posts'),
 
-    path('article-view/<int:pk>/comment/', add_comment_to_post, name='add_comment_to_post'),
+    path(
+        'article-view/<int:pk>/comment/',
+        add_comment_to_post,
+        name='add_comment_to_post'
+        ),
 
 ]
 

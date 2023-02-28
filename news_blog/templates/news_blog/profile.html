@@ -12,12 +12,11 @@
     <hr>
     <p class="title">{{user.email}}</p>
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit"><a href="{% url 'profile_update' %}">Update
-                    Profile</a></button>
+            <a class="btn btn-outline-info" href="{% url 'profile_update' %}">Update
+                    Profile</a>
         </div>
     </div>
     <hr>
-    </form>
     <h2 class="text-center">Your Posts</h2>
     {% if user_posts.has_other_pages %}
     <nav aria-label="Post navigation">

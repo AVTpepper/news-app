@@ -1,21 +1,20 @@
 {% extends 'news_blog/base.html' %}
 
 {% block content %}
-    <h2>Update Profile Page</h2>
-    <p>Here you are able to update your profile! How cool is that?</p>
-    <div class="content-section">
-        <form enctype="multipart/form-data" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend>Update Profile</legend>
-                {{ u_form.as_p }}
-                {{ p_form.as_p }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Update</button>
-                <button class="btn btn-outline-info" type="submit"><a href="{% url 'profile' %}">Go Back</a> </button>
-            </div>
-
-        </form>
-    </div>
+<h2>Update Profile Page</h2>
+<p>Here you are able to update your profile! How cool is that?</p>
+<div class="content-section">
+    <form enctype="multipart/form-data" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend>Update Profile</legend>
+            {{ u_form.as_p }}
+            {{ p_form.as_p }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Update</button>
+            <a class="btn btn-outline-info" href="{% url 'profile' %}">Go Back</a>
+        </div>
+    </form>
+</div>
 {% endblock content %}

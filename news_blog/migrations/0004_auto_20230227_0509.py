@@ -14,11 +14,18 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='post',
             name='image',
-            field=cloudinary.models.CloudinaryField(blank=True, default='https://res.cloudinary.com/ddfkccacb/image/upload/t_Grayscale/v1675254029/media/post_pics/sample.jpg', max_length=255, null=True, verbose_name='image'),
+            field=cloudinary.models.CloudinaryField(
+                blank=True,
+                default='https://res.cloudinary.com/ddfkccacb/image/upload/'
+                        't_Grayscale/v1675254029/media/post_pics/sample.jpg',
+                max_length=255, null=True, verbose_name='image'),
         ),
         migrations.AlterField(
             model_name='profile',
             name='image',
-            field=cloudinary.models.CloudinaryField(blank=True, default='media/profile_pics/vsquvarj1tbivkaoe1vr.jpg', max_length=255, null=True, verbose_name='image'),
+            field=cloudinary.models.CloudinaryField(
+                blank=True,
+                default='media/profile_pics/vsquvarj1tbivkaoe1vr.jpg',
+                max_length=255, null=True, verbose_name='image'),
         ),
     ]
