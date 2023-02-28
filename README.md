@@ -1,6 +1,6 @@
 # **TaleTell**
 
-![am-i-responsive](/documents/)
+![am-i-responsive](/documents/readme_images/am_i_responsive.png)
 
 **TaleTell is a an app for those interested in reading, sharing and/or creating posts to share with others.**
 
@@ -17,7 +17,6 @@ Deployed version of this project can be found [here](https://news-app-avtpepper.
 * [Project Purpose](#project-purpose)
 * [UX](#ux)
     * [Project Scope](#project-scope)
-    * [Strategy](#strategy)
     * [User Stories](#user-stories)
 * [Design](#design)
     * [Website Structure](#website-structure)
@@ -43,7 +42,6 @@ Deployed version of this project can be found [here](https://news-app-avtpepper.
     * [Code Validation](#code-validation)
 * [Bugs during development](#bugs-during-development)
     * [Fixed Bugs and Solutions](#fixed-bugs-and-solutions)
-    * [Ongoing Bugs](#ongoing-bugs)
 * [Development and Deployment](#development-and-deployment)
     * [Local Deployment](#local-deployment)
     * [Deployment to Heroku](#deployment-to-heroku)
@@ -91,6 +89,7 @@ Target Audience: People looking for a community to share stories with others.
 
 ## **User Stories**
 
+I initially used githubs project board (dont know how to link it, but its set to public access, so should be able to be viewed [project-board](https://github.com/users/AVTpepper/projects/4/views/1)) to help me stay on track with features I wanted to implement. Some of the user stories below are ones I thought of on the go during the project.
 
 * As an **admin**, I can **access an admin profile** so that I can **create, edit and delete posts.**
 
@@ -146,15 +145,12 @@ Target Audience: People looking for a community to share stories with others.
 
     * Collapsable navbar menu for smaller media query screens
 
-    ![responsive-toggle-example](/documents/readme_images/)
+    ![responsive-toggle-example](/documents/readme_images/responsive-toggle-example.png)
 
     * All buttons, icons and links respond to hovering
 
-    ![responsive-link-example](/documents/readme_images/)
+    ![responsive-link-example](/documents/readme_images/responsive-link-example.png)
 
-    <!-- * Pop up modals with warnings and messages across site
-    
-    ![responsive-modal-example](/documents/readme_images/responsive%20modal%20design%20example.jpg) -->
 
 ## **Relational Database Diagram**
 
@@ -162,7 +158,7 @@ Target Audience: People looking for a community to share stories with others.
 
 * The following diagram represents the relational database model design for this website. It was made using Quick Database Diagrams:
 
-![relational-database-diagram](/documents/readme_images/)
+![relational-database-diagram](/documents/readme_images/relational-database-diagram.png)
 
 **Models**
 
@@ -194,21 +190,21 @@ Target Audience: People looking for a community to share stories with others.
 Intial ideas were far more challenging to implement than what I first had intended. Below I will share the first few Wireframes created for this project.
 * **Wireframes**
  
-    * Design for home page can be seen [here](/documents/readme_images/).
-    * Design for sign up page can be seen [here](/documents/readme_images/).
-    * Design for login can be seen [here](/documents/readme_images/).
-    * Design for article view page can be seen [here](/documents/readme_images/).
-    * Design for post creation can be seen [here](/documents/readme_images/).
-    * Design for view all posts page can be seen [here](/documents/readme_images/).
-    * Design for Site Map can be seen [here](/documents/readme_images/).
+    * Design for home page can be seen [here](/documents/readme_images/Landing%20Page.png).
+    * Design for sign up page can be seen [here](/documents/readme_images/sign-up-wireframe.png.png).
+    * Design for login can be seen [here](/documents/readme_images/actual-login-page.png).
+    * Design for article view page can be seen [here](/documents/readme_images/single-article-view.png).
+    * Design for post creation can be seen [here](/documents/readme_images/Post%20Creation%20Page.png).
+    * Design for view all posts page can be seen [here](/documents/readme_images/View%20All%20Stories.png).
+    * Design for Site Map can be seen [here](/documents/readme_images/Site%20Map.png).
 
 The rest of the pages were created without a design in mind but followed the general structure of those already created.
 
-## **Colour Design**
+## **Color Design**
 
-This colour palette was made using [Coolers](https://coolors.co/).
+This color palette was made using [Coolers](https://coolors.co/).
 
-![colour-palette](/documents/readme_images/)
+![color-palette](/documents/readme_images/color-palette-p4.png)
 
 This colour palette has been the basis for colour which has been applied throughout the website in this general order: 
 
@@ -253,7 +249,7 @@ Information on existing features can be found on [this page](/documents/features
         * Which asks the user if they are sure to delete their post.
         * Which also gives them the option to return back.
 
-    ![delete-page](/documents/readme_images/)
+    ![delete-page](/documents/readme_images/delete-post-page.png)
 
     * Updating
 
@@ -336,64 +332,67 @@ This project contains the following resources:
     * Google Developer Tools 
     * Manual Testing
 
+
 ## **Testing User Stories**
 
-* Testing user stories can be found [here](/documents/testing/testing_user_stories.md).
+| **User Stories** |  Tested |  Works As Intended |
+|  --- | --- | --- |
+| As an **admin**, I can **access an admin profile** | ✅ | ✅
+| As an **admin**, I can **view / edit / delete user profile information** |✅ | ✅
+| As a **first-time site visitor** I can **sign-up** |✅ | ✅
+| As a **user**, I can **sign-in and out of an account** |✅ | ✅
+| As a **user**, I can **view posts** |✅ | ✅
+| As a **user**, I can **add comments** |✅ | ✅
+| As a **user**, I can **like a post** |✅ | ✅
+| As a **user**, I can **unlike a post** |✅ | ✅
+| As a **user**, I can **create a post** |✅ | ✅
+| As a **user**, I can **update my post** |✅ | ✅
+| As a **user**, I can **delete my post** |✅ | ✅
+| As a **user**, I can **search for a post** |✅ | ✅
+| As a **user**, I can **get to my user profile** |✅ | ✅
+| As a **user**, I can **update my profile information** |✅ | ✅
 
 ## **Automated Testing**
 
-* 19 automated tests have been implemented.
-* Automated tests were carried out during the creation of website functions and classes.
-* The tool use to measure coverage of code was the Coverage.py tool.
-* To check coverage in the HTML format run in the terminal:
-    * `coverage run --source=appname manage.py test`
-    * `coverage html`
-    * Run `python3 -m http.server` (in case there is a server already running, enter `python3 -m http.server 8080`, for example).
-    * Live server should be running with a list of HTML options.
-    * Pick 'htmlcov/'.
-
-![coverage-report-1](/documents/readme_images/coverage%20part%201.jpg)
-![coverage-report-1](/documents/readme_images/coverage%20part%202.jpg)
+* I have not used any Automated Testing, but I hope to learn more about this functionality for my next project.
 
 ## **Testing Accessibility and Performance**
 
 * Testing for accessibility and performance is managed using the Lighthouse tool in Chrome extension:
 
+These results are **before improvements**:
+
     * For Desktop:
 
     | Section | Performance | Accessibility | Best Practices | SEO |
     | --- | --- | --- | --- | --- |
-    | Home | 99 | 92 | 83 | 90 |
-    | Past Events | 93 | 93 | 83 | 90 |
-    | Event | 99 | 92 | 83 | 90 |
-    | Sign Up | 99 | 92 | 83 | 89 |
-    | Login | 99 | 92 | 83 | 89 |
-    | User Profile | 99 | 92 | 83 | 90 |
-    | User Settings | 99 | 83 | 83 | 89 |
+    | Index | 76 | 91 | 92 | 82 |
+    | All Posts | 75 | 94 | 92 | 90 |
+    | Login | 100 | 94 | 92 | 90 |
+    | Profile Dashboard | 88 | 94 | 83 | 91 |
+    | Article View | 83 | 93 | 92 | 91 |
+    | Post Creation | 98 | 94 | 92 | 90 |
 
     * For Mobile devices:
 
     | Section | Performance | Accessibility | Best Practices | SEO |
     | --- | --- | --- | --- | --- |
-    | Home | 94 | 92 | 83 | 92 |
-    | Past Events | 94 | 93 | 83 | 92 |
-    | Event | 92 | 92 | 83 | 92 |
-    | Sign Up | 93 | 92 | 83 | 91 |
-    | Login | 93 | 92 | 83 | 91 |
-    | User Profile | 91 | 94 | 83 | 92 |
-    | User Settings | 92 | 83 | 83 | 91 |
+    | Index | 66 | 93 | 92 | 85 |
+    | All Posts | 64 | 93 | 92 | 92 |
+    | Login | 99 | 95 | 92 | 92 |
+    | Profile Dashboard | 92 | 94 | 83 | 92 |
+    | Article View | 94 | 94 | 92 | 92 |
+    | Post Creation | 97 | 95 | 92 | 92 |
 
 ## **Code Validation**
 
 * **W3C HTML Code Validator**
 
-    * Each page of the deployed website was run through the [HTML Markup Validation Service](https://validator.w3.org/) and returned no errors.
+    * Each page of the deployed website was run through the [HTML Markup Validation Service](https://validator.w3.org/) and returned only a few errors, most of them which were complaining about the static urls. 1 or two warnings / erros about wrapping a tags within buttons. That was a quick fix by just removing the button element and gave the a tag bootstrap classes.
 
 * **W3C CSS Jigsaw Validator**
 
     * CSS code was tested with [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) via direct input and returned no errors.
-
-    ![css-validator](/documents/readme_images/css%20validator%20.jpg)
 
 * **JSHint validator**
 
@@ -401,11 +400,11 @@ This project contains the following resources:
 
 * **Python Validator**
 
-    * All Python files across the application returned no errors.
+    * The only problem I am getting are lines too long. All the problems are now solved after going through all the documents (28.02.23).
 
     ** <u>**NOTE**</u> **
 
-    * At the time of testing (25/11/2022), the [PEP8 Online Service](http://pep8online.com/) has been down.
+    * At the time of testing (27/02/2023), the [PEP8 Online Service](http://pep8online.com/) has been down for a while.
     * In order to carry out effective validation of standardised Python, the following was done in the GitPod terminal:
         * Run the command `pip3 install pycodestyle`. It may be that this is already installed by default, that being the case, the requirement is met and nothing will happen.
         * Press CTRL+Shift+P (or Cmd+Shift+P on Mac) and type `linter` into the search tab that appears.
@@ -418,43 +417,18 @@ This project contains the following resources:
 
 ## **Fixed bugs and solutions:**
 
-* URLs failed to load when running the server
+* Static Files failed to load when running the server
 
     * _Solution: '/' was incorrectly placed before the file path._
-
-* RegexValidator for validating letters-only text would not accept spaces or commas.
-
-    * _Solution: After experimenting with regex validation methods on [regex101](https://regex101.com/), I eventually created a solution which allowed letters, spaces, commas and still raised an error when numbers were used._
 
 * When using smaller screens, the navigation bar felt quite chunky and took up a lot of the screen.
 
     * _Solution: Modified navbar position to static and created a toggle button for the navbar links for screens tablet size or smaller using Bootstrap._
 
-* Sign-up links fonts were not matching with font size of the rest of the site description, thus appearing incongruent. 
+* Text Field for post-creation, comments, post-updates were challenging to make responsive. 
 
-    * _Solution: Discovered that there was a duplicate and therefore conflicting CSS class with conflicting font-sizes. Modified this issue and the font-size became consistent._
+    * _Solution: Discovered that I could target the specifc fields through parent-child relationships with other elements around._
 
-* User profile update successful message would not appear or would duplicate.
-
-    * _Solution: Message for-loop needed to be moved outside the profile list for-loop, which allows it be properly displayed at all times._
-
-* Validate_age function would not correctly raise a ValidationError and would crash website.
-
-    * _(26/11/2022) Solution: In order to correctly raise a ValidationError, the developer created a validate-birthday function, which took the user value and made sure it was not any year before 1920 and not beyond any year past 2004. This was inserted into the birthday object of the profile model as a validator. This then either raises a ValidationError correctly, without crashing the page or passes the correct value, and that validated value can then get parsed through the get-age function, which successfully returns the user age._
-
-## **Ongoing bugs:**
-
-*  The developer has discovered bugs and created solutions throughout the development of the project. However some bugs are still present in the finished product. They are the following:
-
-    * In Profile Dashboard for smaller screens (less than 375px), there is a right-side margin issue. 
-
-    * (26/11/2022, Issue fixed) <del>The validate_age function would redirect users to a 500 page rather than simply allowing an error message to happen when redirecting user back to 'user profile'. Therefore, instead of raising a ValidationError if user age is < 18 and > 100, the method returns an empty string, which allows the user to be redirected to the 'user profile' page and registers an empty string as the age input if their input is invalid. Whilst this solved the issue of stopping an error page, the validate_age method *should* raise a ValidationError with a message for the user, therefore the developer still considers the issue an unfixed bug.</del>
-
-    * (01/12/2022) The AllAuth Password Reset does not actually send a user an e-mail with a link to change password. It does however print a backend terminal e-mail, to demonstrate a level of functionality. Code that was tried in the settings.py file of the core project was the following:
-
-        ![password-reset-error](/documents/readme_images/email%20error.jpg)
-
-        However this code still did not produce any functionality. Therefore the developer opted to remove the code, and have the variable `EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'` remain in place so that backend functionality is demonstrated and it does not cause any errors.
 
 # **Development and deployment**
 
@@ -467,9 +441,9 @@ For local deployments instructions shall be written below, along with instructio
 This repository can be cloned and run locally with the following steps:
 
 1. Login to [GitHub](https://www.github.com).
-2. Select repository named: [keironchaudhry/p4-lingomeets](https://github.com/keironchaudhry/p4-lingomeets).
-3. Click code toggle button and copy the url (i.e., https://github.com/keironchaudhry/p4-lingomeets.git).
-4. In your IDE, open terminal and run the git clone command (i.e., git clone https://github.com/keironchaudhry/p4-lingomeets.git).
+2. Select repository named: [keironchaudhry/p4-lingomeets](https://github.com/AVTpepper/news-app).
+3. Click code toggle button and copy the url (i.e., https://github.com/AVTpepper/news-app.git).
+4. In your IDE, open terminal and run the git clone command (i.e., git clone https://github.com/AVTpepper/news-app.git).
 5. The repository will now be cloned in your workspace.
 6. Create an [env.py file](https://dev.to/jakewitcher/using-env-files-for-environment-variables-in-python-applications-55a1) (this file should normally be included in .gitignore, therefore it'll not be committed publicly in the root folder of your project) and add in the following code with the relevant key, value pairs, and ensure you enter the correct key values. For example:
 
@@ -484,10 +458,9 @@ This repository can be cloned and run locally with the following steps:
 7. Install the relevant packages as per the requirements.txt file
 8. In `settings.py` file, ensure the connection is set to either the Heroku Postgres Database or the local SQLite database
 9. Ensure debug is set to true in the `settings.py` file for local development
-10. Add localhost/127.0.0.1 to the ALLOWED_HOSTS variable in `settings.py`
+10. Add 'localhost', to the ALLOWED_HOSTS variable in `settings.py`
 11. Run `python3 manage.py showmigrations` to check the status of the migrations
 12. Run `python3 manage.py migrate` to migrate the database
-13. Run `python3 manage.py createsuperuser` to create a super/admin user
 14. Start the application by running `python3 manage.py runserver`
 
 ## **Deployment to Heroku**
@@ -496,23 +469,21 @@ Deployment to Heroku can be done with the following guideline:
 
 1. Create an account on Heroku
 2. Create an app and give it the desired name and select a region
-3. <del>Under resources, search for Postgres, and add _Heroku Postgres_ database to the app</del>
-    * Due to changes taking place as from the 28/11/2022 with regards to Heroku and their PostgreSQL Add-on, student developers at Code Institute have had to migrate their project database to [ElephantSQL](https://www.elephantsql.com/).
-        1. Create an account on ElephantSQL.
-        2. Click on 'Create an instance'
-        3. Give your plan a Name, select the appropriate Plan and then select a region and data-center closest to your location.
-        4. Once details are completed, click 'Create instance'. 
-        5. Copy and paste dashboard `DATABASE_URL` and copy and paste into Heroku Config Vars in Settings, and be sure to set your `env.py` in your project IDE to the same URL. 
-4. The `DATABASE_URL` needs to be set as an environment variable in both Heroku and in the IDE local environment variables
-5. Create a `Procfile` with the following text: `web: gunicorn project_name.wsgi`
-6. Make sure you add your environment variables (env.py) to Heroku's Config Vars
-7. Ensure `Debug` is set to `False` in the settings.py file
-8. Add 'localhost', and 'project_name.herokuapp.com' to the `ALLOWED_HOSTS` variable in `settings.py`
-9. Run `python3 manage.py showmigrations` to check the status of the migrations
-10. Run `python3 manage.py migrate` to migrate any necessary data to the database
-11. Run `python3 manage.py createsuperuser` to create an admin user
-12. Connect the app to GitHub, and enable automatic deploys from main (or you can manually deploy).
-13. Click 'deploy' to deploy your application to Heroku for the first time
+3. Create an account on ElephantSQL.
+4. Click on 'Create an instance'
+5. Give your app a Name, select the appropriate Plan and then select a region and data-center closest to your location.
+6. Once details are completed, click 'Create instance'. 
+7. Copy and paste the dashboard `DATABASE_URL` and paste it into Heroku Config Vars in Settings, and be sure to set your `env.py` in your project IDE to the same URL. 
+8. The `DATABASE_URL` needs to be set as an environment variable in both Heroku and in the IDE local environment variables
+9. Create a `Procfile` with the following text: `web: gunicorn project_name.wsgi`
+10. Make sure you add your environment variables (env.py) to Heroku's Config Vars
+11. Ensure `Debug` is set to `False` in the settings.py file
+12. Add 'localhost', and 'project_name.herokuapp.com' to the `ALLOWED_HOSTS` variable in `settings.py`
+13. Run `python3 manage.py showmigrations` to check the status of the migrations
+14. Run `python3 manage.py migrate` to migrate any necessary data to the database
+15. Run `python3 manage.py createsuperuser` to create an admin user
+16. Connect the app to GitHub, and enable automatic deploys from main (or you can manually deploy).
+17. Click 'deploy' to deploy your application to Heroku for the first time
 
 
 # **Credits**
@@ -524,20 +495,24 @@ The following websites proved to be both insightful and helpful during developme
 * [Stack Overflow](https://stackoverflow.com/)
 * [W3School](https://www.w3schools.com/)
 * [GeeksForGeeks](https://www.geeksforgeeks.org/)
-* [YouTube](https://www.youtube.com/)
+* [YouTube](https://www.youtube.com/) - [Desphixs](https://www.youtube.com/watch?v=OBsLgCm-Ayo&list=PL_KegS2ON4s580mS3nPt5x_eu6kO2cvOc&ab_channel=Desphixs)
 
 # **Acknowledgments**
 
 For inspiration, guidance and inputs, thank you to:
 
-* Sandeep Aggarwal
+* Maranatha Ilesanmi
 
-    Absolutely fantastic mentor at Code Institute with brilliant insight into Full Stack Software Development and programmatic skills.
+    My mentor from Code Institute.
     
-* Jack Crymble
+* Keiron Liam Chaudhry
 
-    Friend and guide, thank you for your knowledge and insight!
+    Code Institute Hackathon buddy providing troublshooting help and a wonderful README.md template!
 
-* Jody Murray
+* Iuliia Konovalova
 
-    Fellow student and colleague, thank you for your input and constant support!
+    Another Code Institute Hackathon buddy taking time out of her day just to have a look at my project! Always nice with another set of eyes, thanks!
+
+* Code Institute Tutors
+
+    Thanks for being available for questions when I was in dire need!
