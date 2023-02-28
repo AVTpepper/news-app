@@ -8,16 +8,16 @@
                 <div class="card-body">
                     <h1 class="card-title">Update Post</h1>
                     <p>This is the Page that will help you update your posts!</p>
-                    <div>
-                        <h3>Update your post here</h3>
-                        <form method="post" class="form-group" enctype="multipart/form-data"
-                            action="{% url 'add_comment_to_post' post.pk %}">
-                            <div class="d-flex flex-column comment-form">{% csrf_token %}
-                                {{ form.as_p}}
-                            </div>
-                            <button class="btn btn-success mt-2 mb-4" type="submit">Add comment</button>
-                        </form>
-                    </div>
+
+                    <h3>Update your post here</h3>
+                    <form method="post" class="form-group" enctype="multipart/form-data"
+                        action="{% url 'add_comment_to_post' post.pk %}">
+                        <div class="d-flex flex-column comment-form">{% csrf_token %}
+                            {{ form.as_p}}
+                        </div>
+                        <button class="btn btn-success mt-2 mb-4" type="submit">Add comment</button>
+                    </form>
+
                 </div>
             </div>
         </div>
