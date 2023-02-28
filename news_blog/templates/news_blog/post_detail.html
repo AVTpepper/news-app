@@ -73,7 +73,7 @@
             <div>
               <h3>Add a comment</h3>
               <h4>Posting as: {{ user.username }}</h4>
-              <form method="post" class="form-group " enctype="multipart/form-data"
+              <form method="post" class="form-group" enctype="multipart/form-data"
                 action="{% url 'add_comment_to_post' post.pk %}">
                 <div class="d-flex flex-column comment-form">{% csrf_token %}
                   {{ comment_form.as_p}}

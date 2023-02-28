@@ -1,23 +1,26 @@
 {% extends 'news_blog/base.html' %}
 
 {% block content %}
-<h1>Update Post</h1>
-    <p>This is the Page that will help you update your posts!</p>
-    <div class="content-section row justify-content-center">
-        <div class="col-lg-8 col-md-9 col-sm-12 comment-form">
-            <form enctype="multipart/form-data" method="post">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend>Post Update</legend>
-                    {{ form.as_p }}
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Post</button>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">Update Post</h1>
+                    <p>This is the Page that will help you update your posts!</p>
+                    <div>
+                        <h3>Update your post here</h3>
+                        <form method="post" class="form-group" enctype="multipart/form-data"
+                            action="{% url 'add_comment_to_post' post.pk %}">
+                            <div class="d-flex flex-column comment-form">{% csrf_token %}
+                                {{ form.as_p}}
+                            </div>
+                            <button class="btn btn-success mt-2 mb-4" type="submit">Add comment</button>
+                        </form>
+                    </div>
                 </div>
-            </form>
-            <div class="border-top pt-3">
-                <small class="text-muted">Changed your mind?<a href="{% url 'article_view' post.pk %}"> Go Back</a></small>
             </div>
         </div>
     </div>
+</div>
 {% endblock content %}
