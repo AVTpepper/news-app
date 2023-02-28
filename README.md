@@ -265,7 +265,8 @@ Information on existing features can be found on [this page](/documents/features
 * Font Selection.
 * Modified buttons to be more inlign with the color-scheme.
 * Password Reset interface that successfully sends an e-mail to user to change password.
-
+* Crispy Forms for better forms.
+* More success messages.
 
 # **Data Validation**
 
